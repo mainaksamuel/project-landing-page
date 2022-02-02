@@ -14,7 +14,7 @@ const hideNavbar = () => navbar.hidden = true;
 const unhideNavbar = () => navbar.hidden = false;
 
 // Set interval to hide the navbar
-const hideNavbarInterval = setInterval(hideNavbar, 3000);
+setInterval(hideNavbar, 3000);
 
 
 /*
@@ -29,7 +29,6 @@ window.onscroll = () => {
   } else {
     back2top.hidden = true;
   }
-
 };
 
 
