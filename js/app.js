@@ -12,7 +12,7 @@ const sections = document.querySelectorAll("[data-nav]");
 document.addEventListener("DOMContentLoaded", () => {
 
   // Provide a way to asynchronously observe changes in the visibility of an element in the viewport.
-  const observer = new IntersectionObserver((elem) => updateSectionClassList(elem), { threshold: [0.8] });
+  const observer = new IntersectionObserver(entries => updateClassLists(entries), { threshold: [0.8] });
 
   for (const section of sections) {
     const heading = section.querySelector("h2").textContent;
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
  *
  * param: sectionLink => anchor tag whose reference is the section's DOM Id
  */
-const appendToNavBar = (sectionLink) => {
+const appendToNavBar = sectionLink => {
   const navItem = document.createElement("li");
 
   navItem.appendChild(sectionLink);
@@ -58,14 +58,16 @@ const createSectionLink = (navText, sectionId) => {
 
 
 /*
- * Toggle navlink's active class if section is in viewport
+ * Toggle section's and navlink's active class if section is in viewport
  *
- * param: elem => IntersectionObserverEntry item
+ * param: entries => IntersectionObserverEntry item
  */
-const updateSectionClassList = (elem) => {
-  if (elem[0].isIntersecting === true) {
-    elem[0].target.classList.add("your-active-class");
+const updateClassLists = entries => {
+  if (entries[0].isIntersecting === true) {
+    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.add("active");
+    entries[0].target.classList.add("your-active-class");
   } else {
-    elem[0].target.classList.remove("your-active-class");
+    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.remove("active");
+    entries[0].target.classList.remove("your-active-class");
   }
 };

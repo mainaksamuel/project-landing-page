@@ -81,6 +81,7 @@ section {
     display: block;
     padding: 1em;
     font-weight: bold;
+    font-size: 0.8em;
     text-decoration: none;
     color: #000;
 }
@@ -89,6 +90,11 @@ section {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
+}
+
+#navbar__list .active {
+    color: #E76F51;
+    background: #333;
 }
 
 /* Header Styles */
@@ -123,6 +129,10 @@ section {
     .landing__container {
         max-width: 50em;
         padding: 4em;
+    }
+
+    .navbar__menu .menu__link {
+        font-size: inherit;
     }
 }
 
