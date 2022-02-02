@@ -64,10 +64,10 @@ const createSectionLink = (navText, sectionId) => {
  */
 const updateClassLists = entries => {
   if (entries[0].isIntersecting === true) {
-    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.add("active");
     entries[0].target.classList.add("active");
+    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.add("active");
   } else {
-    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.remove("active");
     entries[0].target.classList.remove("active");
+    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.remove("active");
   }
 };
