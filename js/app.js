@@ -8,8 +8,9 @@ const sections = document.querySelectorAll("[data-nav]");
 /*
  * Main Entry
  *
- * Once the DOM has finished loading, retrieve the heading of each of the
- *  different sections and call `appendToNavBar()` to build out the navbar.
+ * Once the DOM has finished loading, retrieve the heading to be used for each
+ *    of the navigation links from the sections, and call `appendToNavBar()`
+ *    to build out the navbar.
  * Also, provide a way of checking if a section is in the viewport.
  */
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver(entries => updateClassLists(entries), { threshold: [0.8] });
 
   for (const section of sections) {
-    const heading = section.querySelector("h2").textContent;
+    const heading = section.getAttribute("data-nav");
     const sectionId = section.getAttribute("id");
 
     // create section's link and append it to the navbar list
@@ -47,7 +48,7 @@ const appendToNavBar = sectionLink => {
 /*
  * Create a link to section using the section id attribute
  *
- * param: navText => String representing the section's header
+ * param: navText => String representing the text of the navigation link
  * param: sectionId => DOM Id of the section the nav-item will link to
  */
 const createSectionLink = (navText, sectionId) => {
