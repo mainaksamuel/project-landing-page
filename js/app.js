@@ -2,7 +2,45 @@
 // Retrieve navbar into a variable
 const navbar = document.getElementById("navbar__list");
 // Retrieve the document sections into a variable
-const sections = document.querySelectorAll("[data-nav]");
+const sections = document.querySelectorAll("section[data-nav]");
+// Retrieve the back2top link into a variable
+const back2top = document.querySelector(".back2top");
+
+
+/*
+ * Functions to toggle the visibility of the navbar on the document.
+ */
+const hideNavbar = () => navbar.hidden = true;
+const unhideNavbar = () => navbar.hidden = false;
+
+// Set interval to hide the navbar
+const hideNavbarInterval = setInterval(hideNavbar, 3000);
+
+
+/*
+ * Reveal the navbar when user is scrolling, and also toggle the `back-to-top`
+ * link visibility when the user scrolls beyond half the page-fold.
+ */
+window.onscroll = () => {
+  unhideNavbar();
+
+  if (window.scrollY > (window.innerHeight / 2)) {
+    back2top.hidden = false;
+  } else {
+    back2top.hidden = true;
+  }
+
+};
+
+
+/*
+ * Reveal the navbar when mouse pointer moves to the top of the page.
+ */
+window.onmousemove = (evt) => {
+  if (evt.clientY <= 60) {
+    unhideNavbar();
+  }
+};
 
 
 /*
@@ -46,7 +84,7 @@ const appendToNavBar = sectionLink => {
 
 
 /*
- * Create a link to section using the section id attribute
+ * Create a link to a section using the section's id attribute
  *
  * param: navText => String representing the text of the navigation link
  * param: sectionId => DOM Id of the section the nav-item will link to

@@ -234,3 +234,26 @@ section.active .landing__container::after {
         rotate(-360deg);
     }
 }
+
+
+.back2top {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 50px;
+    border-radius: 40%;
+    z-index: 99;
+    background-color: #777;
+    transition: transform .2s; /* Animation */
+}
+
+.back2top:hover {
+    transform: scale(1.2);  /* 120% zoom */
+}
+
+.back2top .back2top__link {
+    text-decoration: none;
+    color: #fff;
+    width: 50px;
+    margin: auto
+}
