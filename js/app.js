@@ -13,8 +13,29 @@ const back2top = document.querySelector(".back2top");
 const hideNavbar = () => navbar.hidden = true;
 const unhideNavbar = () => navbar.hidden = false;
 
-// Set interval to hide the navbar
-setInterval(hideNavbar, 3000);
+
+/*
+ * Create a timeout timer for hidding the navbar on page
+ */
+let timer = null;
+const hideNavbarTimeoutTimer = () => {
+  if (timer !== null) {
+    clearTimeout(timer);
+  }
+  timer = setTimeout(hideNavbar, 2000);
+};
+
+
+/*
+ * Create a timeout timer for hidding the navbar on page
+ */
+let timer = null;
+const hideNavbarTimeoutTimer = () => {
+  if (timer !== null) {
+    clearTimeout(timer);
+  }
+  timer = setTimeout(hideNavbar, 2000);
+};
 
 
 /*
@@ -24,20 +45,28 @@ setInterval(hideNavbar, 3000);
 window.onscroll = () => {
   unhideNavbar();
 
+  // toggle `back-to-top` link visibility
   if (window.scrollY > (window.innerHeight / 2)) {
     back2top.hidden = false;
   } else {
     back2top.hidden = true;
   }
+
+  // hide navbar after user has stopped scrolling
+  hideNavbarTimeoutTimer();
 };
 
 
 /*
  * Reveal the navbar when mouse pointer moves to the top of the page.
+ *  (Approximately, up to the navbar's position height)
  */
 window.onmousemove = (evt) => {
   if (evt.clientY <= 60) {
     unhideNavbar();
+
+    // hide navbar if mouse pointer is inactive, or  leaves the top of the page.
+    hideNavbarTimeoutTimer();
   }
 };
 
@@ -53,7 +82,7 @@ window.onmousemove = (evt) => {
 document.addEventListener("DOMContentLoaded", () => {
 
   // Provide a way to asynchronously observe changes in the visibility of an element in the viewport.
-  const observer = new IntersectionObserver(entries => updateClassLists(entries), { threshold: [0.8] });
+  const observer = new IntersectionObserver(entries => updateClassLists(entries), { threshold: [0.7] });
 
   for (const section of sections) {
     const navText = section.getAttribute("data-nav");
