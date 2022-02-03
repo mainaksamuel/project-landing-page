@@ -27,18 +27,6 @@ const hideNavbarTimeoutTimer = () => {
 
 
 /*
- * Create a timeout timer for hidding the navbar on page
- */
-let timer = null;
-const hideNavbarTimeoutTimer = () => {
-  if (timer !== null) {
-    clearTimeout(timer);
-  }
-  timer = setTimeout(hideNavbar, 2000);
-};
-
-
-/*
  * Reveal the navbar when user is scrolling, and also toggle the `back-to-top`
  * link visibility when the user scrolls beyond half the page-fold.
  */
