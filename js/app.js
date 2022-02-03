@@ -8,6 +8,29 @@ const back2top = document.querySelector(".back2top");
 
 
 /*
+ * Enable smooth scrolling to a Section when clicking `navlink`
+ */
+navbar.addEventListener("click", (evt) => {
+  evt.preventDefault();
+
+  const section = document.querySelector(evt.target.getAttribute("href"));
+  section.scrollIntoView({ behavior: "smooth" });
+});
+
+
+/*
+ * Enable smooth scrolling to the top when clicking `back-to-top` link
+ */
+back2top.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  window.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
+
+/*
  * Functions to toggle the visibility of the navbar on the document.
  */
 const hideNavbar = () => navbar.hidden = true;
