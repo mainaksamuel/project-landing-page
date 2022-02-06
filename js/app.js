@@ -146,9 +146,9 @@ const createSectionLink = (navText, sectionId) => {
 const updateClassLists = entries => {
   if (entries[0].isIntersecting === true) {
     entries[0].target.classList.add("active");
-    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.add("active");
+    navbar.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.add("active");
   } else {
     entries[0].target.classList.remove("active");
-    document.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.remove("active");
+    navbar.querySelector(`a[href="#${entries[0].target.getAttribute("id")}"]`).classList.remove("active");
   }
 };
